@@ -1,4 +1,11 @@
-﻿<?
+﻿<!-- ********************************************************************************************************************************
+Скоморохов Дмитрий <uarg75oye@gmail.com>
+17/05/2016 21:03:22
+func.php - Содержит функции, неодходимые для вывода данных из таблиц базы данных.
+Расположен в  skomorokhov_dmitry_315/
+**********************************************************************************************************************************-->
+
+<?
     require_once 'core/config/db.php';  // Работает
 
     // Функция выбора данных
@@ -6,8 +13,10 @@
     //Эта функция выводит название категории товаров
       function get_ru_name(){
   	    $cat_url = $_GET["Categories"];
+        // Выполняем SQL-запрос
   	    $query = "SELECT Name FROM Categories WHERE Url = '$cat_url'";
   	    $result = mysql_query($query) or die('Запрос не удался: 1' . mysql_error());
+        // Выводим результаты в html
   		    echo "<table class=\"cat\">\n";
   	    while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
   	        echo "\t<tr>\n";
@@ -43,7 +52,7 @@
       FROM Categories
       INNER JOIN TOVARY ON `Categories`.`ID` = `Tovary`.`ID_Cat`
       WHERE `Categories`.`Url` = '$cat_url'
-      ORDER BY `Tovary`.`ID` ;";#`Categories`.`Name`;
+      ORDER BY `Tovary`.`ID` ASC;";#Сортировка по возрастанию айдишников             `Categories`.`Name`;
       $result = mysql_query($query) or die('Запрос не удался: 3' . mysql_error());     
       echo "<table class=\"tovary\">\n";
       while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
