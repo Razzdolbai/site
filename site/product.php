@@ -1,8 +1,8 @@
 <?php 
-require_once 'db.php';  // Работает
+require_once 'core/config/db.php';  // Работает
 
 // Выполняем SQL-запрос
-$query = 'SELECT * FROM product';
+$query = 'SELECT * FROM Tovary';
 $result = mysql_query($query) or die('Запрос не удался: ' . mysql_error());
 // Выводим результаты в html
 $rows = mysql_num_rows($result);
